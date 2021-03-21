@@ -68,11 +68,10 @@ def update2today():
                         insert_db(db, read_data(f"csv/{target}"))
 
 
-def read_stock_df(stock_id, start=None, end=None):
+def read_stock_df(db, stock_id, start=None, end=None):
     col = ['index', 'code_id', 'date', 'open', 'high', 'low', 'close', 'vol']
-    with DBManager() as db:
-        rst = db.read_stock(stock_id=stock_id, start=start, end=end)
-        df = pd.DataFrame(rst, columns=col)
+    rst = db.read_stock(stock_id=stock_id, start=start, end=end)
+    df = pd.DataFrame(rst, columns=col)
     return df
 
 
